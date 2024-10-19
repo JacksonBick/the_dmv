@@ -20,4 +20,11 @@ RSpec.describe Registrant do
       expect(registrant_2.permit?).to eq(nil)
     end
   end
+  describe "earn_permit" do
+    it "changes registrant to show they earned their permit" do
+      registrant_2 = Registrant.new('Penny', 15,)
+
+      expect(registrant_2.earn_permit).to eq(true)
+    end
+  end
 end

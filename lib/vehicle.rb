@@ -9,6 +9,7 @@ class Vehicle
     @make = vehicle_details[:make]
     @model = vehicle_details[:model]
     @engine = vehicle_details[:engine]
+    @registration_date = nil
   end
 
   def antique?
@@ -20,7 +21,7 @@ class Vehicle
   end
 
   def registration_date
-    
+    Date.today
   end
 end
 
