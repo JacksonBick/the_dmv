@@ -27,10 +27,14 @@ RSpec.describe Facility do
   describe 'register_vehicle' do
     it "adds registered vehicles to the registered vehicles array" do
       cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet',model: 'Cruz', engine: :ice} )
-      
+      bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
       expect(@facility.registered_vehicles).to eq([])
       @facility.register_vehicle(cruz)
       expect(@facility.registered_vehicles).to eq([cruz])
+      @facility.register_vehicle(bolt)
+      expect(@facility.registered_vehicles).to eq([cruz, bolt])
     end
   end
+
+  
 end

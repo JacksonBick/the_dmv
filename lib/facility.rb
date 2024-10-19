@@ -1,3 +1,6 @@
+require 'date'
+require 'vehicle.rb'
+
 class Facility
   attr_reader :name, :address, :phone, :services, :registered_vehicles
 
@@ -15,11 +18,7 @@ class Facility
   end
 
   def register_vehicle(vehicle)
+    vehicle.registration_date
     @registered_vehicles << vehicle 
   end
- 
-  def collected_fees
-    
-  end
 end
-
