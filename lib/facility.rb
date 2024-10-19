@@ -1,8 +1,8 @@
 require 'date'
-require 'vehicle.rb'
+require './lib/vehicle.rb'
 
 class Facility
-  attr_reader :name, :address, :phone, :services, :registered_vehicles
+  attr_reader :name, :address, :phone, :services, :registered_vehicles, :collected_fees
 
   def initialize(data)
     @name = data[:name]
@@ -11,6 +11,7 @@ class Facility
     @services = []
     data = {name:, address:, phone:}
     @registered_vehicles = []
+    @collected_fees = 0
   end
 
   def add_service(service)
@@ -18,7 +19,25 @@ class Facility
   end
 
   def register_vehicle(vehicle)
-    vehicle.registration_date
+    #require 'pry'; binding.pry
+    vehicle.registration_date = Date.today
     @registered_vehicles << vehicle 
+    determine_plate_type_collect_fees(vehicle)
+    @registered_vehicles
+  end
+
+  #helper methods
+
+  def determine_plate_type_collect_fees(vehicle)
+    if vehicle.antique? 
+      vehicle.plate_type = :antique
+      @collected_fees += 25
+    elsif vehicle.electric_vehicle?
+      vehicle.plate_type = :electric_vehicle
+      @collected_fees += 200
+    else 
+      vehicle.plate_type = :regular
+      @collected_fees += 100
+    end
   end
 end

@@ -34,7 +34,33 @@ RSpec.describe Facility do
       @facility.register_vehicle(bolt)
       expect(@facility.registered_vehicles).to eq([cruz, bolt])
     end
-  end
+    it "tells date of registration" do
+      cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet',model: 'Cruz', engine: :ice} )
+      bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
+      expect(cruz.registration_date).to eq(nil)
+      expect(bolt.registration_date).to eq(nil)
+      @facility.register_vehicle(cruz)
+      @facility.register_vehicle(bolt)
+      expect(cruz.registration_date).to eq(Date.today)
+      expect(bolt.registration_date).to eq(Date.today)
+    end
 
-  
+    it 'tells the fees collected based on plate_type' do
+      cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet',model: 'Cruz', engine: :ice} )
+      bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
+      expect(@facility.collected_fees).to eq(0)
+      @facility.register_vehicle(cruz)
+      expect(@facility.collected_fees).to eq(100)
+      @facility.register_vehicle(bolt)
+      expect(@facility.collected_fees).to eq(300)
+    end
+    it 'tells what type of plate a vehicle has' do
+      cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet',model: 'Cruz', engine: :ice} )
+      bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
+      @facility.register_vehicle(cruz)
+      @facility.register_vehicle(bolt)
+      expect(cruz.plate_type).to eq(:regular)
+      expect(bolt.plate_type).to eq(:electric_vehicle)
+    end
+  end
 end

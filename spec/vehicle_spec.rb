@@ -42,11 +42,3 @@ RSpec.describe Vehicle do
     end
   end
 
-  describe 'collected_fees' do
-    it 'tells the fees collected based on plate_type' do
-      expect(@cruz.collected_fees).to eq(100)
-      expect(@bolt.collected_fees).to eq(200)
-      expect(@camaro.collected_fees).to eq(25)
-    end
-  end
-end
