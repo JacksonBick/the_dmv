@@ -2,6 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Facility do
   before(:each) do
+    #@services = ['Vehicle Registration']
     @facility = Facility.new({name: 'DMV Tremont Branch', address: '2855 Tremont Place Suite 118 Denver CO 80205', phone: '(720) 865-4600'})
   end
   describe '#initialize' do
@@ -26,6 +27,7 @@ RSpec.describe Facility do
 
   describe 'register_vehicle' do
     it "adds registered vehicles to the registered vehicles array" do
+      @facility.add_service('Vehicle Registration')
       cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet',model: 'Cruz', engine: :ice} )
       bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
       expect(@facility.registered_vehicles).to eq([])
@@ -35,6 +37,7 @@ RSpec.describe Facility do
       expect(@facility.registered_vehicles).to eq([cruz, bolt])
     end
     it "tells date of registration" do
+      @facility.add_service('Vehicle Registration')
       cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet',model: 'Cruz', engine: :ice} )
       bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
       expect(cruz.registration_date).to eq(nil)
@@ -46,6 +49,7 @@ RSpec.describe Facility do
     end
 
     it 'tells the fees collected based on plate_type' do
+      @facility.add_service('Vehicle Registration')
       cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet',model: 'Cruz', engine: :ice} )
       bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
       expect(@facility.collected_fees).to eq(0)
@@ -55,6 +59,7 @@ RSpec.describe Facility do
       expect(@facility.collected_fees).to eq(300)
     end
     it 'tells what type of plate a vehicle has' do
+      @facility.add_service('Vehicle Registration')
       cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet',model: 'Cruz', engine: :ice} )
       bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
       @facility.register_vehicle(cruz)

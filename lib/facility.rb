@@ -1,5 +1,5 @@
 require 'date'
-require './lib/vehicle.rb'
+#require './lib/vehicle.rb'
 
 class Facility
   attr_reader :name, :address, :phone, :services, :registered_vehicles, :collected_fees
@@ -19,11 +19,13 @@ class Facility
   end
 
   def register_vehicle(vehicle)
+    if @services.include?('Vehicle Registration')
     #require 'pry'; binding.pry
-    vehicle.registration_date = Date.today
-    @registered_vehicles << vehicle 
-    determine_plate_type_collect_fees(vehicle)
-    @registered_vehicles
+      vehicle.registration_date = Date.today
+      @registered_vehicles << vehicle 
+      determine_plate_type_collect_fees(vehicle)
+      @registered_vehicles
+    end
   end
 
   #helper methods
