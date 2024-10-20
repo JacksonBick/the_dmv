@@ -68,4 +68,24 @@ RSpec.describe Facility do
       expect(bolt.plate_type).to eq(:electric_vehicle)
     end
   end
+
+  describe "administer_written_test" do 
+    it "changes license data to show if registrant has written test" do
+      @facility.add_service('Written Test')
+      registrant_1 = Registrant.new('Bruce', 18, true )
+      registrant_2 = Registrant.new('Penny', 16 )
+      registrant_3 = Registrant.new('Tucker', 15, true )
+      @facility.administer_written_test(registrant_1)
+      @facility.administer_written_test(registrant_2)
+      @facility.administer_written_test(registrant_3)
+      
+      expect(registrant_1.license_data).to eq({:written=>true, :license=>false, :renewed=>false})
+      expect(registrant_2.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+      expect(registrant_3.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+    end
+  end
+
+  describe "administer_road_test" do
+    it 
+  end
 end
