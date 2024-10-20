@@ -86,6 +86,22 @@ RSpec.describe Facility do
   end
 
   describe "administer_road_test" do
-    it 
+    it "changes license data to show if registrant done a road test" do
+      @facility.add_service('Written Test')
+      @facility.add_service('Road Test')
+      registrant_1 = Registrant.new('Bruce', 18, true )
+      registrant_2 = Registrant.new('Penny', 16 )
+      registrant_3 = Registrant.new('Tucker', 15, true )
+      @facility.administer_written_test(registrant_1)
+      @facility.administer_written_test(registrant_2)
+      @facility.administer_written_test(registrant_3)
+      @facility.administer_road_test(registrant_1)
+      @facility.administer_road_test(registrant_2)
+      @facility.administer_road_test(registrant_3)
+
+      expect(registrant_1.license_data).to eq({:written=>true, :license=>true, :renewed=>false})
+      expect(registrant_2.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+      expect(registrant_3.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+    end
   end
 end
