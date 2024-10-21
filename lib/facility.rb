@@ -49,6 +49,7 @@ class Facility
         registrant.license_data[:written] = true
       end
     end 
+    false
   end
 
   def administer_road_test(registrant)
@@ -57,6 +58,7 @@ class Facility
         registrant.license_data[:license] = true
       end
     end
+    false
   end
 
   def renew_drivers_license(registrant)
@@ -65,5 +67,6 @@ class Facility
         registrant.license_data[:renewed] = true
       end
     end
+    false
   end
 end
