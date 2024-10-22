@@ -76,8 +76,11 @@ RSpec.describe VehicleFactory do
       working = factory.create_vehicles(vehicles)
 
       expect(working.first).to be_a(Vehicle)
-      expect(vehicles.length).to eq(2)
-      expect()
+      expect(working.length).to eq(2)
+      expect(working.last.make).to eq("TESLA")
+      expect(working.first.vin).to eq("1N4BZ0CP3G")
+      expect(working.first.year).to eq(2016)
+      expect(working.last.model).to eq("Model 3")
     end
   end
 end
