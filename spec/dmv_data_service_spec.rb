@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'rspec'
 
 RSpec.describe DmvDataService do
   before(:each) do

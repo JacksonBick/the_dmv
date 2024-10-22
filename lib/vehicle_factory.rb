@@ -2,7 +2,7 @@ require 'spec_helper'
 
 class VehicleFactory
 
-  def create_vehicles(registations)
+  def create_vehicles(registrations)
     registrations.map do |data|
       Vehicle.new(
         vin: data[:vin_1_10],
@@ -11,10 +11,6 @@ class VehicleFactory
         model: data[:model],
         engine: data[:engine]
       )
-    end
-
-    registrations.each do |vehicle|
-      p
     end
   end
 end
