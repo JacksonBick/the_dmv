@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'rspec'
 
 RSpec.describe FacilityFactory do
-  describe 'create_facilities' do
-    it 'takes an array of hashes of facility data and makes them into instances of the facility class' do
+  describe 'create_facilities_CO' do
+    it 'takes an array of hashes of facility data and makes them into instances of the facility class for colorado' do
 
       factory = FacilityFactory.new
       facilities = [{:the_geom=>{:type=>"Point", :coordinates=>[-104.97443112500002, 39.75525297420336]},
@@ -38,13 +38,61 @@ RSpec.describe FacilityFactory do
       :address_id=>"11348",
       :":@computed_region_nku6_53ud"=>"1444"}]
 
-      working = factory.create_facilities(facilities)
+      working = factory.create_facilities_CO(facilities)
 
       expect(working.first).to be_a(Facility)
       expect(working.length).to eq(2)
       expect(working.last.name).to eq("DMV Northeast Branch")
       expect(working.first.address).to eq("2855 Tremont Place")
       expect(working.first.services).to eq(["vehicle titles, registration, renewals;  VIN inspections"])
+    end
+  end
+
+  describe 'create_facilities_NY' do
+    it 'takes the data of facilities for NY and turns them into intances of facility class' do
+
+      factory = FacilityFactory.new
+      facilities = [{:office_name=>"LAKE PLACID",
+      :office_type=>"COUNTY OFFICE",
+      :street_address_line_1=>"2693 MAIN STREET",
+      :city=>"LAKE PLACID",
+      :state=>"NY",
+      :zip_code=>"12946",
+      :monday_beginning_hours=>"CLOSED",
+      :monday_ending_hours=>"CLOSED",
+      :georeference=>{:type=>"Point", :coordinates=>[-73.982492701, 44.282282462]},
+      :":@computed_region_yamh_8v7k"=>"430",
+      :":@computed_region_wbg7_3whc"=>"275",
+      :":@computed_region_kjdx_g34t"=>"2084"},
+     {:office_name=>"HUDSON",
+      :office_type=>"COUNTY OFFICE",
+      :public_phone_number=>"5188283350",
+      :street_address_line_1=>"560 WARREN STREET",
+      :city=>"HUDSON",
+      :state=>"NY",
+      :zip_code=>"12534",
+      :monday_beginning_hours=>"9:00 AM",
+      :monday_ending_hours=>"4:45 PM",
+      :tuesday_beginning_hours=>"9:00 AM",
+      :tuesday_ending_hours=>"4:45 PM",
+      :wednesday_beginning_hours=>"9:00 AM",
+      :wednesday_ending_hours=>"4:45 PM",
+      :thursday_beginning_hours=>"9:00 AM",
+      :thursday_ending_hours=>"6:45 PM",
+      :friday_beginning_hours=>"9:00 AM",
+      :friday_ending_hours=>"4:45 PM",
+      :georeference=>{:type=>"Point", :coordinates=>[-73.784493121, 42.248260478]},
+      :":@computed_region_yamh_8v7k"=>"515",
+      :":@computed_region_wbg7_3whc"=>"977",
+      :":@computed_region_kjdx_g34t"=>"619"}]
+
+      working = factory.create_facilities_NY(facilities)
+
+      expect(working.first).to be_a(Facility)
+      expect(working.first.name).to eq("LAKE PLACID")
+      expect(working.length).to eq(2)
+      expect(working.last.address).to eq("560 WARREN STREET")
+      expect(working.first.phone).to eq(nil)
     end
   end
 end
