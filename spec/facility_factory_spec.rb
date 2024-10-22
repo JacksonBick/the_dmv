@@ -9,6 +9,7 @@ RSpec.describe FacilityFactory do
       working = factory.create_facilities_CO(co_facilities)
 
       expect(working.first).to be_a(Facility)
+      #the length methods might fail if the API were to change (but i know they're not going to for the project
       expect(working.length).to eq(5)
       expect(working).to be_an(Array)
       expect(working.last.name).to be_a(String)
@@ -25,6 +26,7 @@ RSpec.describe FacilityFactory do
 
       expect(working.first).to be_a(Facility)
       expect(working.first.name).to be_a(String)
+      #the length methods might fail if the API were to change (but i know they're not going to for the project
       expect(working.length).to eq(173)
       expect(working.last.address).to be_a(String)
       expect(working.first.phone).to eq(nil)
@@ -37,6 +39,7 @@ RSpec.describe FacilityFactory do
       mo_facilities = DmvDataService.new.mo_dmv_office_locations
       working = factory.create_facilities_MO(mo_facilities)
 
+      #the length methods might fail if the API were to change (but i know they're not going to for the project
       expect(working.length).to eq(177)
       expect(working.first.name).to be_a(String)
       expect(working.last).to be_a(Facility)
