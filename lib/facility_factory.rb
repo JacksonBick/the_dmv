@@ -23,4 +23,15 @@ class FacilityFactory
       )
     end
   end
+
+  def create_facilities_MO(facilities)
+    facilities.map do |data|
+      Facility.new(
+        name: data[:name],
+        address: data[:address1],
+        phone: data[:phone],
+        services: data[:services]
+      )
+    end
+  end
 end

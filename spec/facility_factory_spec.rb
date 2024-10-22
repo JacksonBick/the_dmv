@@ -95,4 +95,64 @@ RSpec.describe FacilityFactory do
       expect(working.first.phone).to eq(nil)
     end
   end
+
+  describe 'create_facilities_MO' do
+    it "takes data from MO DMVs and turns it tnto instances of the facility class" do
+      factory = FacilityFactory.new
+      facilities = [{:number=>"059",
+      :dorregionnumber=>"5",
+      :type=>"1MV",
+      :name=>"FERGUSON-OFFICE CLOSED UNTIL FURTHER NOTICE",
+      :address1=>"10425 WEST FLORISSANT",
+      :city=>"FERGUSON",
+      :state=>"MO",
+      :zipcode=>"63136",
+      :located_in=>"Personalized plates can be picked up at the North County License Office. ",
+      :county=>"St. Louis County",
+      :phone=>"(314) 733-5316",
+      :fax=>"(314) 733-5319",
+      :size=>"3",
+      :email=>"FERGUSONAGENTOFFICE@DOR.MO.GOV",
+      :latlng=>{:latitude=>"38.737935", :longitude=>"-90.220029"},
+      :textingphonenumber=>"(314) 730-0606",
+      :additional_license_office_info=>
+      "Personalized plates can be picked up at the North County License office located at 11700 W Florissant, St. Louis, MO 63033.",
+      :":@computed_region_ny2h_ckbz"=>"203",
+      :":@computed_region_c8ar_jsdj"=>"51",
+      :":@computed_region_ikxf_gfzr"=>"2210"},
+    {:number=>"066",
+      :dorregionnumber=>"4",
+      :type=>"1MV",
+      :name=>"BUTLER",
+      :address1=>"105 N ORANGE ST",
+      :city=>"BUTLER",
+      :state=>"MO",
+      :zipcode=>"64730",
+      :county=>"Bates",
+      :phone=>"(660) 679-0061",
+      :fax=>"(660) 679-0185",
+      :size=>"1",
+      :email=>"Butler.LicenseOffice@lo.mo.gov",
+      :agent=>"LICENSE OFFICE SERVICES, LLC",
+      :officemanager=>"ASHLEY ISAACSON",
+      :daysopen=>"Monday - Friday - 8:30 to 4:30, Last Saturday  - 9:00 to 12:00",
+      :holidaysclosed=>
+      "Christmas Day Observed (12/25/23), New Year's Day (1/1/24), Martin Luther King Jr. Day (1/15/24), Lincoln's Birthday (2/12/24)
+    , President's Day (2/19/24), Truman's Birthday (5/8/24), Memorial Day (5/27/24), Juneteenth (6/19/24), Independence Day (7/4/24), 
+    Labor Day (9/2/24), Columbus Day (10/14/24), Veterans Day (11/11/24), Thanksgiving Day (11/28/24), Christmas Day (12/25/24)",
+      :additionaldaysclosed=>
+      "1/17/2023,         3/31/2023 (at 4:00 PM ),        5/27/2023,           7/3/23,       9/29/2023 (at 1:00 PM ),           11/22
+    /23,           11/24/23,      11/25/2023,           12/26/23,     1/22/2024,    3/19/2024 (at 10:00 AM until 12:00 PM ),    3/19/2
+    024 (open at 12:00 PM ),   4/1/2024 (at 12:30 PM ),     07/05/2024,  7/19/2024 (at 10:00 AM ),     11/29/2024,     12/24/2024",
+      :latlng=>{:latitude=>"38.25987", :longitude=>"-94.34308"}}]
+
+      working = factory.create_facilities_MO(facilities)
+
+      expect(working.length).to eq(2)
+      expect(working.first.name).to eq("FERGUSON-OFFICE CLOSED UNTIL FURTHER NOTICE")
+      expect(working.last).to be_a(Facility)
+      expect(working.last.address).to eq("105 N ORANGE ST")
+      expect(working.first.phone).to eq("(314) 733-5316")
+    end
+  end
 end
