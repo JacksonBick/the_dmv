@@ -1,3 +1,5 @@
+require './lib/facility'
+
 class FacilityFactory
 
   def create_facilities(facilities)

@@ -1,5 +1,5 @@
-require 'rspec'
 require 'spec_helper'
+require 'rspec'
 
 RSpec.describe FacilityFactory do
   describe 'create_facilities' do
@@ -41,6 +41,7 @@ RSpec.describe FacilityFactory do
       working = factory.create_facilities(facilities)
 
       expect(working.first).to be_a(Facility)
+      expect(working.length).to eq(2)
     end
   end
 end

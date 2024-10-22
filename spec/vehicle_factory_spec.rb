@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'rspec'
  
 RSpec.describe VehicleFactory do
   describe "create_vehicles" do
