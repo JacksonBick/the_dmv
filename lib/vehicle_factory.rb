@@ -1,0 +1,20 @@
+require 'spec_helper'
+
+class VehicleFactory
+
+  def create_vehicles(registations)
+    registrations.map do |data|
+      Vehicle.new(
+        vin: data[:vin_1_10],
+        year: data[:model_year].to_i,
+        make: data[:make],
+        model: data[:model],
+        engine: data[:engine]
+      )
+    end
+
+    registrations.each do |vehicle|
+      p
+    end
+  end
+end
