@@ -8,7 +8,7 @@ class Facility
     @name = data[:name]
     @address = data[:address]
     @phone = data[:phone]
-    @services = []
+    @services = data[:services]
     data = {name:, address:, phone:}
     @registered_vehicles = []
     @collected_fees = 0

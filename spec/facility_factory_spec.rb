@@ -42,6 +42,9 @@ RSpec.describe FacilityFactory do
 
       expect(working.first).to be_a(Facility)
       expect(working.length).to eq(2)
+      expect(working.last.name).to eq("DMV Northeast Branch")
+      expect(working.first.address).to eq("2855 Tremont Place")
+      expect(working.first.services).to eq(["vehicle titles, registration, renewals;  VIN inspections"])
     end
   end
 end

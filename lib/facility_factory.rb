@@ -8,7 +8,7 @@ class FacilityFactory
         name: data[:dmv_office],
         address: data[:address_li],
         phone: data[:phone],
-        services: data[:services_p],
+        services: Array(data[:services_p]),
       )
     end
   end
