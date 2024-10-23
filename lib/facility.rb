@@ -8,13 +8,14 @@ class Facility
     @name = data[:name]
     @address = data[:address]
     @phone = data[:phone]
-    @services = data[:services]
+    @services = []
     data = {name:, address:, phone:}
     @registered_vehicles = []
     @collected_fees = 0
   end
 
   def add_service(service)
+    #require 'pry'; binding.pry
     @services << service
   end
 
